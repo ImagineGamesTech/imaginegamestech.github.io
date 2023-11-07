@@ -1,6 +1,53 @@
 <html>
+  <style>
+    /**
+ * `@property` is required for the animation to work.
+ * Without it, the angle values won’t interpolate properly.
+ *
+ * @see https://dev.to/afif/we-can-finally-animate-css-gradient-kdk
+ */
+@property --bg-angle {
+  inherits: false;
+  initial-value: 0deg;
+  syntax: "<angle>";
+}
+
+/**
+ * To animate the gradient, we set the custom property to 1 full
+ * rotation. The animation starts at the default value of `0deg`.
+ */
+@keyframes spin {
+  to {
+    --bg-angle: 360deg;
+  }
+}
+
+
+article {
+  /* add the animation, but pause it by default */
+  animation: spin 2.5s infinite linear paused;
+  
+  /**
+   * Using `background-origin` we can create a “border” using two gradients. And to
+   * make the gradients better-looking, we use OKLCH.
+   *
+   * @see https://developer.mozilla.org/en-US/docs/Web/CSS/background-origin
+   * @see https://evilmartians.com/chronicles/oklch-in-css-why-quit-rgb-hsl
+   */
+  background:
+    /* Background colors don’t work with `background-origin`, so use a gradient. */
+    linear-gradient(
+        to bottom,
+        oklch(0.1 0.2 240 / 0.95),
+  </style>
   <body>
-    <h1 style="font-family: Arial">ImagineGamesTech</h1>
-    <p style="font-family: Arial">Hi, I'm ImagineGamesTech. My gaming name (and my prefered name) is Sulos, or SulosGD. <br>My YouTube is here: <a href=https://youtube.com/@sulos>@sulos</a> <br></p>
+    <main>
+  <article>
+    <h1>ImagineGamesDevs</h1>
+    <p>
+      My username is only ImagineGamesTech because ImagineGamesDevs was taken.
+    </p>
+  </article>
+  </main>
   </body>
 </html>
